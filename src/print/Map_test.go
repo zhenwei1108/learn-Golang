@@ -47,5 +47,17 @@ func Test_verifyStringValueNil(t *testing.T) {
 	} else {
 		t.Log("null")
 	}
+}
+
+func Test_RangeMap(t *testing.T) {
+	maps := map[string]string{"1": "2", "3": "4"}
+	//遍历key
+	for s := range maps {
+		t.Log(s)
+	}
+	//遍历键值对
+	for key, value := range maps {
+		t.Log(key, value)
+	}
 
 }
