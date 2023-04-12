@@ -61,3 +61,39 @@ func Test_RangeMap(t *testing.T) {
 	}
 
 }
+
+// map的value可以是函数，好神奇
+func Test_setMapValueIsFunction(t *testing.T) {
+	//将value定义为函数
+	maps := map[int]func(math int) int{}
+	//设置下标1的函数为
+	maps[1] = func(math int) int {
+		return math * 2
+	}
+
+	maps[2] = func(math int) int {
+		return math * 3
+	}
+
+	t.Log(maps[1](2))
+}
+
+// 使用map实现set
+func Test_buildSetFromMap(t *testing.T) {
+	set := map[string]bool{}
+	set["1"] = true
+	t.Log(set["1"])
+	//定义数组
+	n := []string{"1", "2", "3"}
+	//遍历数组
+	for _, i := range n {
+		if set[i] {
+			t.Log("已存在 ", i)
+		} else {
+			t.Log("不存在 ", i)
+		}
+	}
+	t.Log(len(set))
+	delete(set, "1")
+	t.Log(len(set))
+}
