@@ -1,6 +1,8 @@
 package mine
 
 import (
+	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 )
@@ -16,4 +18,18 @@ func Test_split(t *testing.T) {
 	//拼接
 	join := strings.Join(allString, "")
 	t.Log(join)
+}
+
+func Test_type_conv(t *testing.T) {
+	one := "1"
+	t.Log(one)
+	//获取实际类型
+	t.Log(reflect.TypeOf(one))
+	//类型转换  int -> string
+	itoa := strconv.Itoa(10)
+	t.Log(reflect.TypeOf(itoa))
+	//类型转化 string -> int
+	atoi, _ := strconv.Atoi(itoa)
+	t.Log(reflect.TypeOf(atoi))
+	t.Log(atoi + 1)
 }
