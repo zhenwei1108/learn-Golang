@@ -2,6 +2,7 @@ package mine_test
 
 import (
 	"fmt"
+	mine "learn-goLang/src/print"
 	"testing"
 )
 
@@ -9,7 +10,7 @@ import (
 
 func Test_print(t *testing.T) {
 	t.Log("this is mine test in Learn-print_test")
-
+	mine.TestGetTime(t)
 }
 
 var (

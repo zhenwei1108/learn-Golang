@@ -2,15 +2,29 @@ package mine
 
 import (
 	"fmt"
+	"strconv"
 	"testing"
 	"time"
 )
 
-// 测试入口
+// 测试入口,文件名不是test结尾
 func TestGetTime(t *testing.T) {
 	//调用 calculate_time 传入另外一个函数 doJob, 返回一个函数
 	calculateTime := calculate_time(doJob)
-	//调用返回的函数
+	/*
+		1. 先调用返回的函数
+		func(i int) string {
+				start := time.Now()
+				itoa := strconv.Itoa(i)
+				fmt.Println("itoa:", itoa)
+		2.内部调用了输入参数 doJob
+				result := inner(itoa)
+				fmt.Println("result:", result)
+				end := time.Now().Nanosecond() - start.Nanosecond()
+				return string(rune(end))
+			}
+
+	*/
 	s := calculateTime(100)
 	t.Log(s)
 }
@@ -22,8 +36,10 @@ func TestGetTime(t *testing.T) {
 func calculate_time(inner func(s string) int) func(i int) string {
 	return func(i int) string {
 		start := time.Now()
-		result := inner(string(i))
-		fmt.Print(result)
+		itoa := strconv.Itoa(i)
+		fmt.Println("itoa:", itoa)
+		result := inner(itoa)
+		fmt.Println("result:", result)
 		end := time.Now().Nanosecond() - start.Nanosecond()
 		return string(rune(end))
 	}
@@ -31,6 +47,6 @@ func calculate_time(inner func(s string) int) func(i int) string {
 
 // 构造 用于输入的inner方法
 func doJob(start string) int {
-	fmt.Print("input: " + start)
+	fmt.Println("input: " + start)
 	return 0
 }
