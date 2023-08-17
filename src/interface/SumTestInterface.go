@@ -1,5 +1,6 @@
 package _interface
 
+// 首字母大写，表示 public  都可以访问
 type Req struct {
 	A int
 	B int
